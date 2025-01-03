@@ -1,0 +1,7 @@
+{
+    "chdir": "../",
+    "executor": "jumper",
+    "core": ["condition", "variable", "foliage"],
+    "modules": [
+    ]
+}

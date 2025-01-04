@@ -1,8 +1,14 @@
 {
     "chdir": "/app/",
     "executor": "jumper",
-    "core": ["condition", "variable"],
+    "core": ["condition", "variable", "foliage"],
     "default_vars": {
         "a": "Hello World!"
-    }
+    },
+    "modules_args": {
+        "foliage.headless": true
+    },
+    "modules": [
+        "foliage"
+    ]
 }

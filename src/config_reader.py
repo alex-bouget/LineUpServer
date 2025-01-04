@@ -28,7 +28,7 @@ class Config(BaseModel):
     modules: List[str] = []
     core: List[str] = []
     executor: str = ""
-    default_args: dict = {}
+    modules_args: dict = {}
     default_vars: dict = {}
     users: List[Dict[str, str]] = []
     modules_set: List[Module] = []
@@ -91,6 +91,8 @@ class ConfigBuilder:
             name = os.path.basename(os.path.dirname(module))
         file = module
         result = run_path(module, {"__server_config__": self.config})
+        if "__lineup__" not in result:
+            return name, "", "", None
         obj = result["__lineup__"]
         type = self.get_module_type(obj)
         return name, type, file, obj
@@ -106,6 +108,8 @@ class ConfigBuilder:
         if not os.path.isfile(file):
             return name, "", "", None
         result = run_path(file, {"__server_config__": self.config})
+        if "__lineup__" not in result:
+            return name, "", "", None
         obj = result["__lineup__"]
         type = self.get_module_type(obj)
         return name, type, file, obj

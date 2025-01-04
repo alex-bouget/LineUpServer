@@ -6,5 +6,6 @@ modules
 scripts
 config.json
 Dockerfile
+docker-compose.yml
 LICENSE
 README.md

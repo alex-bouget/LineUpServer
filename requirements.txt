@@ -1,2 +1,8 @@
-fastapi==0.115.6
 lineup-lang==0.1.5
+fastapi
+fastapi-cli
+email_validator
+httpx
+Jinja2
+python-multipart
+uvicorn

@@ -1,0 +1,10 @@
+# Test build
+services:
+  server:
+    build: .
+    ports:
+      - "3000:80"
+    volumes:
+      - ./config.json:/app/config.json
+      - /home/bouget/Bureau/git/github/Foliage:/app/modules/Foliage
+      - ./test/:/test/

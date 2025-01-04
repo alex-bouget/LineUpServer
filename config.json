@@ -1,7 +1,8 @@
 {
-    "chdir": "../",
+    "chdir": "/app/",
     "executor": "jumper",
-    "core": ["condition", "variable", "foliage"],
-    "modules": [
-    ]
+    "core": ["condition", "variable"],
+    "default_vars": {
+        "a": "Hello World!"
+    }
 }

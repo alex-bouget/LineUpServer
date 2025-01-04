@@ -90,7 +90,6 @@ class ConfigBuilder:
         if name == "lup_module":
             name = os.path.basename(os.path.dirname(module))
         file = module
-        sys.path.append(os.path.dirname(file))
         result = run_path(module, {"__server_config__": self.config})
         obj = result["__lineup__"]
         type = self.get_module_type(obj)
@@ -106,7 +105,6 @@ class ConfigBuilder:
             name = os.path.splitext(name)[0]
         if not os.path.isfile(file):
             return name, "", "", None
-        sys.path.append(os.path.dirname(file))
         result = run_path(file, {"__server_config__": self.config})
         obj = result["__lineup__"]
         type = self.get_module_type(obj)

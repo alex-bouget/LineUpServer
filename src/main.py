@@ -5,7 +5,10 @@ from fastapi import FastAPI
 from config_reader import ConfigBuilder, Config
 from language import ServerLanguage
 
-config_builder = ConfigBuilder("../config.json")
+if os.environ.get("LUP_SERVER_DOCKER"):
+    config_builder = ConfigBuilder("/app/config.json")
+else:
+    config_builder = ConfigBuilder("../config.json")
 config = config_builder.get_config()
 language = ServerLanguage(config)
 

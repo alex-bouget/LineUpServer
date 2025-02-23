@@ -7,13 +7,19 @@ RUN apk add --no-cache \
 EXPOSE 80
 
 # Set the working directory
-WORKDIR /app/src
+WORKDIR /runtime
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+ENV LUP_SERVER_DOCKER=1
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY ./src /runtime
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+COPY ./requirements.txt /runtime/requirements.txt
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt && \
-    chmod +x /app/entrypoint.sh
+RUN pip install --no-cache-dir -r /runtime/requirements.txt && \
+    chmod +x /entrypoint.sh

@@ -14,5 +14,11 @@ for filename in /app/pip/*; do
     echo "Processing pip requirement $filename"
     pip install -r $filename
 done
-
-python -m fastapi run --port 80 --no-reload --no-proxy-headers
+for filename in /app/bash/*; do
+    [ -e "$filename" ] || continue
+    echo "Processing bash script $filename"
+    chmod +x $filename
+    source $filename
+done
+echo "Starting server"
+python server.py

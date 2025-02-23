@@ -25,6 +25,7 @@ class Config(BaseModel):
     chdir: str = "."
     folder: str = "scripts"
     folder_modules: str = "modules"
+    log: str = "WARN"
     modules: List[str] = []
     core: List[str] = []
     executor: str = ""
@@ -94,8 +95,7 @@ class ConfigBuilder:
         if "__lineup__" not in result:
             return name, "", "", None
         obj = result["__lineup__"]
-        type = self.get_module_type(obj)
-        return name, type, file, obj
+        return self.get_info(name, file, obj)
 
     def generate_module_rel(self, module: str) -> tuple[str, str, str, any]:
         name = module
@@ -111,7 +111,15 @@ class ConfigBuilder:
         if "__lineup__" not in result:
             return name, "", "", None
         obj = result["__lineup__"]
-        type = self.get_module_type(obj)
+        return self.get_info(name, file, obj)
+
+    def get_info(self, name: str, file: str, obj: any) -> tuple[str, str, str, any]:
+        obj_instancied = obj
+        if callable(obj):
+            obj_instancied = obj()
+        type = self.get_module_type(obj_instancied)
+        if callable(obj):
+            obj_instancied.close()
         return name, type, file, obj
 
     def get_module_type(self, obj: any) -> str:

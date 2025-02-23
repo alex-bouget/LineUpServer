@@ -7,10 +7,9 @@ class ServerLanguage(Language):
     config: Config
     possiblity: LanguagePossibility
 
-    def __init__(self, config: Config, no_error: bool = True,
-                 log_level: str = "WARN"):
+    def __init__(self, config: Config, no_error: bool = True):
         self.config = config
         self.possiblity = LanguagePossibility(config)
         executor = self.possiblity.get_executor(self.config.executor)
         core = self.possiblity.get_core(self.config.core)
-        super().__init__(executor(core), no_error, log_level)
+        super().__init__(executor(core), no_error, config.log)

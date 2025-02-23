@@ -30,7 +30,10 @@ class LanguagePossibility:
             if module.type == "executor":
                 self._executors[module.name] = module.object
             elif module.type == "core":
-                self._core_object[module.name] = module.object
+                obj = module.object
+                if callable(obj):
+                    obj = obj()
+                self._core_object[module.name] = obj
             elif module.type == "language":
                 self._language_object[module.name] = module.object
 

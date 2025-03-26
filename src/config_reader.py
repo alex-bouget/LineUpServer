@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import List, Dict, Any
-import sys
 import os
 import json
 import inspect

@@ -1,4 +1,4 @@
-lineup-lang==0.1.7
+lineup-lang==0.2.0
 fastapi
 fastapi-cli
 email_validator

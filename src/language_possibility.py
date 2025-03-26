@@ -16,11 +16,12 @@ class LanguagePossibility:
             "jumper": luexec.JumperExecutor,
         }
         self._core_object = {
-            "condition": lucore.ConditionsJumpObject(),
+            "Conditions": lucore.Conditions(),
+            "System": lucore.System(),
         }
         self._language_object = {}
         self.append_with_config()
-        self._core_object["variable"] = lucore.VariableObject({
+        self._core_object["Variables"] = lucore.Variables({
             **self.config.default_vars,
             **self._language_object,
         })
